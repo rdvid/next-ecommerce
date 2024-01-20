@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import Head from 'next/head';
+import { Product, ProductProps } from '@/types/product';
 
 export async function getStaticProps() {
   const dummyProductsUrl = `${process.env.API_URL}`;
-  const data = await fetch(dummyProductsUrl)
+  const data: Product[] = await fetch(dummyProductsUrl)
       .then((response) => {
         return response.json();
       })
@@ -18,13 +19,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Products({data}) {
-
-  // const [products, setProducts] = useState([]);
-
-  // useEffect(() => {
-    
-  // }, [])
+export default function Products({data}: ProductProps) {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
