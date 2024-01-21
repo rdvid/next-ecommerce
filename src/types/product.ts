@@ -3,6 +3,7 @@ export type Product = {
     attributes: {
         name: string,
         description: string,
+        category: string,
         slug: string,
         price: number,
         createdAt: Date,

@@ -1,15 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // commented home redirect
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/',
-  //       destination: '/products',
-  //       permanent: true,
-  //     },
-  //   ]
-  // },
+  
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/home',
+        permanent: true,
+      },
+    ]
+  },
 };
 
 export default nextConfig;
