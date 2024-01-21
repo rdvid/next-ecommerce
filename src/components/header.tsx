@@ -3,9 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTheme } from "next-themes";
 import Link from "./link";
 
-function changeTheme(){
-
-}
+// TODO: change typograph and assert components size
+// TODO: fix drawer bug don't overcome footer when opened
 
 export default function Header(){
 
@@ -19,15 +18,15 @@ export default function Header(){
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><a>Item 1</a></li>
+                        <li><Link href='/home'>Home</Link></li>
                         <li>
-                            <a>Parent</a>
-                            <ul className="p-2">
+                            <Link href="/products">Products</Link>
+                            {/* <ul className="p-2">
                                 <li><a>Submenu 1</a></li>
                                 <li><a>Submenu 2</a></li>
-                            </ul>
+                            </ul> */}
                         </li>
-                        <li><a>Item 3</a></li>
+                        <li><Link href="/faq">FAQ</Link></li>
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">Ecommerce</a>
@@ -50,7 +49,7 @@ export default function Header(){
             </div>
             <div className="navbar-end">
                 <label className="swap swap-rotate mx-8">
-                    <input type="checkbox" onClick={(e) => (
+                    <input type="checkbox" onClick={() => (
                         theme === "dark" ? (
                             setTheme("nord")
                         ): (
@@ -64,7 +63,38 @@ export default function Header(){
                     {/* moon icon */}
                     <svg className="swap-off fill-current w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z"/></svg>
                 </label>
-                <a className="btn">Cart <FontAwesomeIcon icon={faCartShopping} /></a>
+                
+                {/* <label htmlFor="my_modal_7" className="btn rounded-full bg-transparent shadow-md">
+                    <FontAwesomeIcon icon={faCartShopping} />
+                </label>
+
+                <input type="checkbox" id="my_modal_7" className="modal-toggle" />
+                <div className="modal" role="dialog">
+                    <div className="modal-box">
+                        <h3 className="text-lg font-bold">Hello!</h3>
+                        <p className="py-4">This modal works with a hidden checkbox!</p>
+                    </div>
+                    <label className="modal-backdrop" htmlFor="my_modal_7">Close</label>
+                </div> */}
+                
+                
+                <div className="drawer drawer-end">
+                    <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+                    <div className="drawer-content items-end">
+                        <label htmlFor="my-drawer" className="btn rounded-full bg-transparent drawer-button">
+                            <FontAwesomeIcon icon={faCartShopping} size="xl"/>
+                        </label>
+                    </div> 
+                    <div className="drawer-side">
+                        {/* inside drawer */}
+                        <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
+                        <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+                            <li><a>Sidebar Item 1</a></li>
+                            <li><a>Sidebar Item 2</a></li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         </div>
     );
