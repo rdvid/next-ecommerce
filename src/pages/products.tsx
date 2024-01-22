@@ -5,6 +5,8 @@ import Card from '@/components/card';
 import { axiosInstance as axios } from '@/utils/axios';
 import { ChangeEvent, useEffect, useState } from 'react';
 
+// TODO: add pagination UI
+
 export async function getStaticProps() {
   
   let axiosResponse = await axios.get('/products');
@@ -20,18 +22,21 @@ export async function getStaticProps() {
 export default function Products({data}: ProductProps) {
 
   const [products, setProducts] = useState<Product[]>(data);
-  const [inputValue, setValue] = useState("");
+  const [inputValue, setValue] = useState<string>("");
+  const [filterByCategory, setFilterByCategory] = useState<boolean>(false);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) =>{ 
     setValue(event.target.value); 
   } 
 
-  const handleSearch = async (query: string, filter?: string) => {
+  const handleSearch = async (query: string) => {
 
-    const params = filter 
+    //TODO: develop new ways to filter (price range and ordering)
+  
+    let params = filterByCategory 
     ? {
         params: {
-          'filters[category][$eqi]': query
+          'filters[category][name][$contains]': query
         }
       }
     : {
@@ -39,13 +44,20 @@ export default function Products({data}: ProductProps) {
         'filters[name][$contains]': query
       }
     };
-  
-    let axiosResponse = await axios.get('http://127.0.0.1:1337/api/products', params);
-    const {data} = JSON.parse(axiosResponse.data);
     
-    if(data.length > 0){
-      setProducts(data);
+    try {
+      
+      let axiosResponse = await axios.get(`http://127.0.0.1:1337/api/products`, query ? params : undefined);
+      const {data} = JSON.parse(axiosResponse.data);
+      
+      if(data.length > 0){
+        setProducts(data);
+      }
+
+    } catch (error) {
+      console.error(error)
     }
+    
     
   }
 
@@ -68,20 +80,22 @@ export default function Products({data}: ProductProps) {
       <div className="flex w-full justify-center my-4 max-lg:flex-col-reverse items-center">
 
             <div className="dropdown">
-                <div tabIndex={0} role="button" className="btn btn-primary ">Search by</div>
+                <div tabIndex={0} role="button" className="btn btn-primary ">
+                  Search by {filterByCategory ? "Category" : "Name"}
+                </div>
                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><a>Name</a></li>
-                    <li><a>Category</a></li>
+                    <li><a onClick={() => setFilterByCategory(false)}>Name</a></li>
+                    <li><a onClick={() => setFilterByCategory(true)}>Category</a></li>
                 </ul>
             </div>
 
             <input type="text" 
-                placeholder="Type product name" 
+                placeholder={`Type a ${filterByCategory ? "category":"product name"}`} 
                 value={inputValue ?? ""} 
                 onChange={handleChange}
                 className="input input-bordered min-w-[50%] input-md max-w-xs" 
                 />
-            {/* <button className="btn btn-secondary">asdsa</button> */}
+            
         </div>
       
       <section className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
@@ -91,9 +105,7 @@ export default function Products({data}: ProductProps) {
           ))
         }
       </section>
-      <Link href={'/home'} className='mt-8'>
-        <button className="btn btn-primary">Back to home</button>
-      </Link>
+      
     </main>
   );
 }
