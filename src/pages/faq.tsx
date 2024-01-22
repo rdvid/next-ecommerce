@@ -37,7 +37,7 @@ export default function Page({data}: CategoryProps) {
           <tbody>
             {
               data.map((category) => (
-                <tr>
+                <tr key={count}>
                   <th>{count++}</th>
                   <td>{category}</td>
                 </tr>

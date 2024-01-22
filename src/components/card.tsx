@@ -13,7 +13,7 @@ export default function Card({title, category, price, thumbnail}: Product){
                         <del>
                             <p className="text-sm text-gray-600 cursor-auto ml-2">${price + 50}</p>
                         </del>
-                        <div className="ml-auto" onClick={() => (alert('test'))}>
+                        <div className="ml-auto">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                 fill="currentColor" className="bi bi-bag-plus" viewBox="0 0 16 16">
                                 <path fillRule="evenodd"
