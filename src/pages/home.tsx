@@ -1,6 +1,8 @@
 import Link from "@/components/link";
 import Head from "next/head";
 
+//TODO: implement login and auth0 flow
+
 export default function FaqPage() {
 
 

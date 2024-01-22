@@ -6,17 +6,10 @@ export type Product = {
         category: string,
         slug: string,
         price: number,
+        thumbnail: string,
         createdAt: Date,
         updatedAt: Date
     };
-    meta: {
-        pagination: {
-            page: number,
-            pageSize: number,
-            pageCount: number,
-            total: number
-        }
-    }
 }
 
 

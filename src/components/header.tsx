@@ -29,7 +29,7 @@ export default function Header(){
                         <li><Link href="/faq">FAQ</Link></li>
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">Ecommerce</a>
+                <a href="https://github.com/rdvid/next-ecommerce" target="_blank" className="btn btn-ghost text-xl max-lg:hidden">Ecommerce</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -48,7 +48,7 @@ export default function Header(){
                 </ul>
             </div>
             <div className="navbar-end">
-                <label className="swap swap-rotate mx-8">
+                <label className="swap swap-rotate mx-8 self-center">
                     <input type="checkbox" onClick={() => (
                         theme === "dark" ? (
                             setTheme("nord")
