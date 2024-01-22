@@ -1,16 +1,16 @@
 import { Product } from "@/types/product";
 
-export default function Card({id, attributes}: Product){
+export default function Card({title, category, price, thumbnail}: Product){
     return(
         <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-            <img src={`https://cdn.dummyjson.com/product-images/${id}/thumbnail.jpg`} alt={attributes.name} className="h-80 w-72 object-cover rounded-t-xl" />
+            <img src={`${thumbnail}`} alt={title} className="h-80 w-72 object-cover rounded-t-xl" />
             <div className="px-4 py-3 w-72">
-                    <span className="text-gray-600 mr-3 uppercase text-xs font-semibold">{attributes.category}</span>
-                    <p className="text-lg font-bold text-black truncate block capitalize">{attributes.name}</p>
+                    <span className="text-gray-600 mr-3 uppercase text-xs font-semibold">{category}</span>
+                    <p className="text-lg font-bold text-black truncate block capitalize">{title}</p>
                     <div className="flex items-center">
-                        <p className="text-lg font-semibold text-black cursor-auto my-3">${attributes.price}</p>
+                        <p className="text-lg font-semibold text-black cursor-auto my-3">${price}</p>
                         <del>
-                            <p className="text-sm text-gray-600 cursor-auto ml-2">${attributes.price + 50}</p>
+                            <p className="text-sm text-gray-600 cursor-auto ml-2">${price + 50}</p>
                         </del>
                         <div className="ml-auto" onClick={() => (alert('test'))}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"

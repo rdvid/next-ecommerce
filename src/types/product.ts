@@ -1,15 +1,10 @@
 export type Product = {
     id: number;
-    attributes: {
-        name: string,
-        description: string,
-        category: string,
-        slug: string,
-        price: number,
-        thumbnail: string,
-        createdAt: Date,
-        updatedAt: Date
-    };
+    title: string;
+    description: string;
+    price: number;
+    category: string;
+    thumbnail: string;
 }
 
 

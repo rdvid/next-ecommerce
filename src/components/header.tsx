@@ -6,6 +6,7 @@ import Link from "./link";
 // TODO: change typograph and assert components size
 // TODO: fix drawer bug don't overcome footer when opened
 
+
 export default function Header(){
 
     const {theme, setTheme} = useTheme();
@@ -56,15 +57,14 @@ export default function Header(){
                 <div className="drawer drawer-end">
                     <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                     <div className="drawer-content items-end">
-                        <label htmlFor="my-drawer" className="btn rounded-full bg-transparent drawer-button">
+                        <label htmlFor="my-drawer" className="btn rounded-badged bg-transparent drawer-button">
                             <FontAwesomeIcon icon={faCartShopping} size="xl"/>
                         </label>
                     </div> 
                     <div className="drawer-side">
                         <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                         <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-                            <li><a>Sidebar Item 1</a></li>
-                            <li><a>Sidebar Item 2</a></li>
+                            <li>ops</li>
                         </ul>
                     </div>
                 </div>

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Head from 'next/head';
 import { Product, ProductProps } from '@/types/product';
 import Card from '@/components/card';
@@ -10,11 +9,11 @@ import { ChangeEvent, useEffect, useState } from 'react';
 export async function getStaticProps() {
   
   let axiosResponse = await axios.get('/products');
-  const {data} = JSON.parse(axiosResponse.data);
-  
+  const data = JSON.parse(axiosResponse.data);
+
   return {
     props: {
-      data
+      data: data.products
     },
   };
 }
@@ -32,32 +31,43 @@ export default function Products({data}: ProductProps) {
   const handleSearch = async (query: string) => {
 
     //TODO: develop new ways to filter (price range and ordering)
-  
-    let params = filterByCategory 
-    ? {
+
+    let url:string = `/products/search`;
+    let params;
+    
+    if(filterByCategory){
+      params = {
         params: {
-          'filters[category][name][$contains]': query
+          'q': query
         }
       }
-    : {
-      params: {
-        'filters[name][$contains]': query
-      }
-    };
+
+      url = url.replace("/search", `/category/${query}`);
+
+    }else{
+      params = {
+        params: {
+          'q': query
+        }
+      };
+    }
     
+    if(!query){
+      url = '/products'
+    }
+
     try {
-      
-      let axiosResponse = await axios.get(`http://127.0.0.1:1337/api/products`, query ? params : undefined);
-      const {data} = JSON.parse(axiosResponse.data);
-      
-      if(data.length > 0){
-        setProducts(data);
+      console.log(url)
+      let axiosResponse = await axios.get(url, query ? params : undefined);
+      const data = JSON.parse(axiosResponse.data);
+      console.log(data)
+      if(data.products.length > 0){
+        setProducts(data.products);
       }
 
     } catch (error) {
       console.error(error)
     }
-    
     
   }
 
@@ -79,7 +89,7 @@ export default function Products({data}: ProductProps) {
       
       <div className="flex w-full justify-center my-4 max-lg:flex-col-reverse items-center">
 
-            <div className="dropdown">
+            {/* <div className="dropdown">
                 <div tabIndex={0} role="button" className="btn btn-primary ">
                   Search by {filterByCategory ? "Category" : "Name"}
                 </div>
@@ -87,21 +97,35 @@ export default function Products({data}: ProductProps) {
                     <li><a onClick={() => setFilterByCategory(false)}>Name</a></li>
                     <li><a onClick={() => setFilterByCategory(true)}>Category</a></li>
                 </ul>
-            </div>
+            </div> */}
+
+            <select className="select select-bordered select-info font-bold max-lg:my-4" onChange={(e) => (
+                  setFilterByCategory(e.target.value === "1" ? true : false)
+                )}>
+              <option disabled defaultValue={"Filter by Name"}>Filter by Name</option>
+              <option value={0}>Name</option>
+              <option value={1}>Category</option>
+            </select>
 
             <input type="text" 
                 placeholder={`Type a ${filterByCategory ? "category":"product name"}`} 
                 value={inputValue ?? ""} 
                 onChange={handleChange}
-                className="input input-bordered min-w-[50%] input-md max-w-xs" 
+                className="input input-bordered input-info min-w-[80%] input-md max-w-xs font-semibold" 
                 />
             
         </div>
       
       <section className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
         {
-          products.map((product) => (
-            <Card key={product.id} attributes={product.attributes} id={product.id} />
+          products.map(({id, thumbnail, title, category, price, description}) => (
+            <Card key={id}
+              id={id}
+              title={title}
+              price={price}
+              category={category}
+              thumbnail={thumbnail} 
+              description={description} />
           ))
         }
       </section>
