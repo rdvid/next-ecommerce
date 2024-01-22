@@ -11,10 +11,10 @@ export default function NotFound() {
       </Head>
       <div className="text-center text-red-600 align-center">
         <h1 className="mb-4 text-6xl font-semibold text-red-500">404</h1>
-        <p className="mb-4 text-lg text-gray-600">Oops! Looks like you're lost.</p>
+        <p className="mb-4 text-lg text-gray-600">Oops! Looks like you are lost.</p>
         <FontAwesomeIcon icon={faMugHot} className='animate-bounce'/>
 
-        <p className="mt-4 text-gray-600">Let's get you back <Link href='/home'>Home</Link>.</p>
+        <p className="mt-4 text-gray-600">Lets get you back <Link href='/home'>Home</Link>.</p>
       </div>
     </main>
   );

@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Card({title, category, price, thumbnail}: Product){
     return(
         <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-            <Image src={`${thumbnail}`} alt={title} className="h-80 w-72 object-cover rounded-t-xl" />
+            <Image src={thumbnail} alt={title} height={80} width={72} unoptimized={true} className="h-80 w-72 object-cover rounded-t-xl" />
             <div className="px-4 py-3 w-72">
                     <span className="text-gray-600 mr-3 uppercase text-xs font-semibold">{category}</span>
                     <p className="text-lg font-bold text-black truncate block capitalize">{title}</p>

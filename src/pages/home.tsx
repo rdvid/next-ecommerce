@@ -13,7 +13,14 @@ export default function FaqPage() {
       </Head>
 
       <div className="card lg:card-side bg-base-100 shadow-xl">
-        <figure><Image src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg" alt="Album"/></figure>
+        <figure>
+          <Image src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg" 
+            alt="Album"
+            height={400}
+            width={400}
+            unoptimized={true}
+          />
+        </figure>
         <div className="card-body items-center">
           <h2 className="card-title">Welcome to next-ecommerce</h2>
           <p>Click the button to see our catalogue.</p>
