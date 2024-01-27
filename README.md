@@ -7,10 +7,11 @@
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Eslint](https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white)
 
+<p align="center">
+   <img height=500 width=500 src="https://f005.backblazeb2.com/file/debbuggers/_f981b484-5b4e-49aa-847e-e99c260a1e44.jpg" alt="exemplo imagem">  
+</p>
 
-<img height=500 width=500 src="https://f005.backblazeb2.com/file/debbuggers/_f981b484-5b4e-49aa-847e-e99c260a1e44.jpg" alt="exemplo imagem">
-
-Welcome to our brand new ecommerce
+Welcome to our brand new ecommerce. Take a sit and browse through our vast catalogue 
 
 ### Next Features
 
